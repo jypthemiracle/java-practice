@@ -26,7 +26,7 @@ public class Lambda {
 		}).start();
 	}
 
-	public static int sumAll(List<Integer> numbers) {
+	public static int sumAll (List<Integer> numbers) {
 	    int total = 0;
 	    for (int number : numbers) {
 	        total += number;
