@@ -21,6 +21,12 @@ class JdbcpracticeApplicationTests {
 	@Autowired
 	private MovieRepository movieRepository;
 
+	@Autowired
+	private BookRepository bookRepository;
+
+	@Autowired
+	private AuthorRepository authorRepository;
+
 	@Test
 	void Movie가_저장된다() {
 		List<Rental> rentals = new ArrayList<>();
@@ -31,5 +37,29 @@ class JdbcpracticeApplicationTests {
 		movieRepository.save(movie);
 		Movie newMovie = movieRepository.findByMovieID("Matrix");
 		newMovie.getRental().stream().forEach(m -> System.out.println(m.getPrice()));
+	}
+
+	@Test
+	void book이_저장된다() {
+		Author author = new Author();
+		author.setName("honux");
+
+		authorRepository.save(author);
+
+		Book book = new Book();
+		book.setTitle("GitHub");
+		book.setISBN("123sasdf");
+		book.addAuthor(author);
+
+		bookRepository.save(book);
+		assertNotNull(bookRepository.findAll());
+
+		for (Book b : bookRepository.findAll()) {
+			System.out.println(b.getAuthorName());
+		}
+
+//		for (Author a : authorRepository.findAll()) {
+//			System.out.println(bookRepository.findByAuthorId(a.getId()));
+//		}
 	}
 }
