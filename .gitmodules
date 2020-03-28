@@ -1,0 +1,3 @@
+[submodule "RESTful-SpringTutorial/gs-rest-service"]
+	path = RESTful-SpringTutorial/gs-rest-service
+	url = https://github.com/spring-guides/gs-rest-service.git
