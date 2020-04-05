@@ -1,6 +1,8 @@
 package net.honux.springbootdemo;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Embedded;
@@ -11,14 +13,14 @@ public class User {
     @Id
     private Long id;
     private String email;
-    private Set<Game> Games = new HashSet<>();
+    private List<Game> Games = new ArrayList<>();
 
     public User(String email) {
         this.email = email;
     }
 
-    public void addGame(Game game) {
-        Games.add(game);
+    public void addGame(String title) {
+        Games.add(new Game(title));
     }
 
     public Long getId() {
@@ -37,11 +39,11 @@ public class User {
         this.email = email;
     }
 
-    public Set<Game> getGames() {
+    public List<Game> getGames() {
         return Games;
     }
 
-    public void setGames(Set<Game> games) {
+    public void setGames(List<Game> games) {
         Games = games;
     }
 
