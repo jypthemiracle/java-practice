@@ -9,5 +9,6 @@ CREATE TABLE USER (
 CREATE TABLE GAME (
     id int primary key auto_increment,
     title varchar(64),
-    user int references user(id)
+    user int references user(id),
+    user_key clob
 );
