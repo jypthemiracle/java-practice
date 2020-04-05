@@ -13,9 +13,10 @@ public interface UserRepository extends CrudRepository<User, Long> {
     //그러니까 USER u LEFT OUTER JOIN GITHUB g - Github 없는 사용자도 가져오기 위해서
     //g 필드도 일일이 지정을 해줘야 한다
     //나의 의도와 상관없이 N+1개의 쿼리가 나타난다. 우리가 직접 짤 것이 아니면 무시하도록 하자.
-    @Query("SELECT u.id, u.email, g.id as github_id, g.github_id as github_github_id from"
-        + " USER u LEFT OUTER JOIN GITHUB g"
-    + " WHERE email = :email")
+    @Query("select id, email, nickname from user where email = :email")
+//    @Query("Select u.id as user_id, u.email as user_email, g.id as github_id, g.user_name as github_user_name from"
+//        + " user u left outer join github g on u.id = g.user"
+//        + " where email = :email")
     //@Query("Select * from user where email = :email")
     Optional<User> findUserByEmail(String email);
 }

@@ -1,0 +1,22 @@
+spring:
+  profiles:
+    active: local
+
+---
+spring:
+  profiles: local
+  datasource:
+    hikari:
+      jdbc-url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+      username: sa
+      password:
+      driver-class-name: org.h2.Driver
+---
+spring:
+  profiles: mysql
+  datasource:
+    hikari:
+      jdbc-url: jdbc:mysql://springbatch-practice.ckxjmlmoq2h6.ap-northeast-2.rds.amazonaws.com:3306/test
+      username: admin
+      password: mswinxpsp2
+      driver-class-name: com.mysql.jdbc.Driver
