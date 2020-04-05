@@ -1,5 +1,7 @@
 package net.honux.springbootdemo;
 
+import java.util.HashSet;
+import java.util.Set;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Embedded;
 import org.springframework.data.relational.core.mapping.Embedded.Nullable;
@@ -8,17 +10,16 @@ public class User {
 
     @Id
     private Long id;
-    @Nullable
     private String email;
+    private Set<Game> Games = new HashSet<>();
 
-    public User(String email, Github github) {
+    public User(String email) {
         this.email = email;
-        this.github = github;
     }
 
-    //NULL이 있으면 인식을 못해서 오류가 난다.
-    @Embedded.Nullable //두 개의 객체를 하나의 테이블로 합치는 어노테이션이다.
-    private Github github; //One To One
+    public void addGame(Game game) {
+        Games.add(game);
+    }
 
     public Long getId() {
         return id;
@@ -36,20 +37,15 @@ public class User {
         this.email = email;
     }
 
-    public Github getGithub() {
-        return github;
+    public Set<Game> getGames() {
+        return Games;
     }
 
-    public void setGithub(Github github) {
-        this.github = github;
+    public void setGames(Set<Game> games) {
+        Games = games;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-            "id=" + id +
-            ", email='" + email + '\'' +
-            ", github=" + github +
-            '}';
+    public void clearGames() {
+        Games.clear();
     }
 }
