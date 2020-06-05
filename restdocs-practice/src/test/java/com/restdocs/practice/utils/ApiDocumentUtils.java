@@ -9,6 +9,7 @@ import org.springframework.restdocs.operation.preprocess.OperationRequestPreproc
 import org.springframework.restdocs.operation.preprocess.OperationResponsePreprocessor;
 
 public interface ApiDocumentUtils {
+  //여기 URI 적용은 보통 2단계로 간주된다.
   static OperationRequestPreprocessor getDocumentRequest() {
     return preprocessRequest(
         modifyUris()
